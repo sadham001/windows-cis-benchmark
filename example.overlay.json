@@ -1,0 +1,11 @@
+{
+  "manualControls": [
+    {
+      "id": "ORG-001",
+      "title": "Endpoint is enrolled in the approved EDR platform",
+      "profile": "L1",
+      "expected": "Endpoint is healthy and actively reporting",
+      "recommendation": "Enroll the endpoint in the approved EDR platform and verify its health in the management console."
+    }
+  ]
+}
