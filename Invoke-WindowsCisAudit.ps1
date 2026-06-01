@@ -10,7 +10,7 @@
 #>
 [CmdletBinding()]
 param(
-    [string]$OutputPath = (Join-Path -Path (Get-Location) -ChildPath ("WindowsSecurityAudit-{0:yyyyMMdd-HHmmss}.html" -f (Get-Date))),
+    [string]$OutputPath = ("C:\cis-benchmark-report-of-{0:yyyyMMdd-HHmmss}.html" -f (Get-Date)),
     [ValidateSet('HTML', 'JSON', 'Both')]
     [string]$Format = 'HTML',
     [ValidateSet('L1', 'L2')]
@@ -333,7 +333,7 @@ Test-BitLockerControl
 Add-ManualControls
 Apply-ConfigurationOverlay
 
-$metadata = [pscustomobject]@{ GeneratedAt=(Get-Date).ToString('o'); ScriptVersion='1.0.0'; MaximumProfile=$MaximumProfile; Windows=$script:WindowsProfile; Capabilities=$script:Capabilities }
+$metadata = [pscustomobject]@{ GeneratedAt=(Get-Date).ToString('o'); ScriptVersion='1.1.0'; MaximumProfile=$MaximumProfile; Windows=$script:WindowsProfile; Capabilities=$script:Capabilities }
 $resolvedOutput = [System.IO.Path]::GetFullPath($OutputPath)
 if ($Format -in @('HTML','Both')) { Export-AuditHtml -Path $resolvedOutput -Results $script:Results.ToArray() -Metadata $metadata }
 if ($Format -in @('JSON','Both')) {
